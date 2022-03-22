@@ -19,19 +19,18 @@ const categoryV2 = new CategoryV2Service("mustafayazar1020", "kYx34SUVXceyrpXe2W
 const product = new ProductService("mustafayazar1020", "kYx34SUVXceyrpXe2W59tppaM9FNMyFF", "aA5rt48f3YrZVbabgrFutyrW7BZJTHtj", "XVMxMHPp9vzy26AM");
 (async () => {
   try {
-    /*
     await category.connect();
     const data: ICategoriesRequest = {
       startOffSet: 0,
-      rowCount: 15,
+      rowCount: 50,
       withSpecs: true,
-      withCatalog: false,
-      withDeepest: false,
+      withCatalog: true,
+      withDeepest: true,
       lang: Lang.TR,
     };
     const [categoryRes] = await category.getCategories(data);
 
-    console.log(JSON.stringify(categoryRes.return.categories.category[7].specs.spec.filter((item) => item.$attributes.required === "true")));*/
+    console.log(categoryRes);
     //------------------------------------------------------------------------------------------------------------------------//
     /*
     await categoryV2.connect();
@@ -158,7 +157,7 @@ const product = new ProductService("mustafayazar1020", "kYx34SUVXceyrpXe2W59tppa
     const [res3] = await product.insertAndActivateProduct(data3);
     console.log(res3);
     */
-
+    /*
     await product.connect();
     const data4: IUpdateStockAndActivateProductRequest = {
       productId: "782460084",
@@ -169,6 +168,7 @@ const product = new ProductService("mustafayazar1020", "kYx34SUVXceyrpXe2W59tppa
 
     const [res4] = await product.updateStockAndActivateProduct(data4);
     console.log(res4);
+    */
   } catch (error) {
     console.error(error);
   }

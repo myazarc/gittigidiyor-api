@@ -40,11 +40,17 @@ interface ISpecs {
   spec: ISpec[];
 }
 
+interface ICategoryAttributes {
+  hasCatalog: boolean;
+  deepest: boolean;
+}
+
 interface ICategory {
   categoryCode: string;
   categoryName: string;
   shippingTimes: IShippingTimes;
   specs?: ISpecs;
+  $attributes?: ICategoryAttributes;
 }
 
 interface ICategories {
