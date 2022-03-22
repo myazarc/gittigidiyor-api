@@ -1,6 +1,8 @@
 import Service from "../_global/Service";
 import { Md5 } from "ts-md5/dist/md5";
 import {
+  IGetProductsRequest,
+  IGetProductsResponse,
   IGetStockAndPriceRequest,
   IGetStockAndPriceResponse,
   IInsertAndActivateProductRequest,
@@ -67,5 +69,13 @@ export default class CategoryV2Service extends Service {
     payload.time = time;
     payload.sign = sign;
     return this._.getStockAndPriceAsync(payload);
+  }
+
+  public getProducts(payload: IGetProductsRequest): Promise<[IGetProductsResponse, string | null, string | null, string | null, string | null | undefined]> {
+    payload.apiKey = this.apiKey;
+    const { time, sign } = this.getTimeWithSign();
+    payload.time = time;
+    payload.sign = sign;
+    return this._.getProductsAsync(payload);
   }
 }

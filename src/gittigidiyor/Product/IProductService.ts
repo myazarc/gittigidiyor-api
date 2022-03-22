@@ -338,7 +338,60 @@ interface IGetStockAndPriceResponse {
   return: IGetStockAndPriceReturn;
 }
 
+//#endregion
+
+enum GetProductsStatus {
+  A = "A",
+  L = "L",
+  S = "S",
+  U = "U",
+}
+
+interface IGetProductsRequest {
+  /**
+   * @description Auto filled
+   */
+  apiKey?: string;
+  /**
+   * @description Auto calced and filled
+   */
+  sign?: string;
+  /**
+   * @description Auto filled
+   */
+  time?: number;
+
+  startOffSet: number;
+  /**
+   * @description max 100
+   */
+  rowCount: number;
+  status: GetProductsStatus;
+  withData: boolean;
+  lang: Lang;
+}
+
+interface IProducts {
+  product: IProduct[];
+}
+
+interface IGetProductsReturn {
+  ackCode: string;
+  responseTime: string;
+  timeElapsed?: string;
+  productCount: number;
+  result?: string;
+  error?: IError;
+  products: IProducts;
+}
+
+interface IGetProductsResponse {
+  return: IGetProductsReturn;
+}
+
 export {
+  IGetProductsResponse,
+  IGetProductsRequest,
   IUpdateStockAndActivateProductResponse,
   IUpdateStockAndActivateProductRequest,
   IGetStockAndPriceResponse,
