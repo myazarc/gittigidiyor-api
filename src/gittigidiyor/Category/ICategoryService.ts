@@ -69,4 +69,52 @@ interface ICategoriesResponse {
   return: ICategoriesReturn;
 }
 
-export { ICategoriesRequest, ICategoriesResponse };
+/** */
+interface IGetParentCategoriesRequest {
+  withSpecs: boolean;
+  withDeepest: boolean;
+  withCatalog: boolean;
+  lang: Lang;
+}
+
+interface IGetParentCategoriesResponse extends ICategoriesResponse {}
+/** */
+
+interface IGetSubCategoriesRequest {
+  categoryCode: string;
+  withSpecs: boolean;
+  withDeepest: boolean;
+  withCatalog: boolean;
+  lang: Lang;
+}
+
+interface IGetSubCategoriesResponse extends ICategoriesResponse {}
+
+/** */
+
+interface IGetCategorySpecsRequest {
+  categoryCode: string;
+  lang: Lang;
+}
+
+interface IGetCategorySpecsReturn {
+  ackCode: string;
+  responseTime: string;
+  timeElapsed: string;
+  specs: ISpecs;
+}
+
+interface IGetCategorySpecsResponse {
+  return: IGetCategorySpecsReturn;
+}
+
+export {
+  IGetParentCategoriesRequest,
+  ICategoriesRequest,
+  ICategoriesResponse,
+  IGetParentCategoriesResponse,
+  IGetSubCategoriesRequest,
+  IGetSubCategoriesResponse,
+  IGetCategorySpecsRequest,
+  IGetCategorySpecsResponse,
+};
