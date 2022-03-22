@@ -8,7 +8,7 @@ interface $attributes {
 }
 
 interface ISpec {
-  $attributes: $attributes[];
+  $attributes: $attributes;
 }
 
 interface ISpecs {
@@ -21,7 +21,7 @@ interface ISpecs {
 interface IPhoto {
   $attributes: $attributes;
   url: string;
-  base64: string;
+  base64?: string;
 }
 
 interface IPhotos {
@@ -182,7 +182,7 @@ interface IError {
   ciewMessage: string;
 }
 
-interface ICategoriesReturn {
+interface IInsertAndActivateProductReturn {
   ackCode: string;
   responseTime: string;
   timeElapsed?: string;
@@ -193,7 +193,165 @@ interface ICategoriesReturn {
 }
 
 interface IInsertAndActivateProductResponse {
-  return: ICategoriesReturn;
+  return: IInsertAndActivateProductReturn;
+}
+//#endregion
+
+interface IUpdatePriceRequest {
+  /**
+   * @description Auto filled
+   */
+  apiKey?: string;
+  /**
+   * @description Auto calced and filled
+   */
+  sign?: string;
+  /**
+   * @description Auto filled
+   */
+  time?: number;
+
+  itemId?: string;
+  productId?: string;
+  price: number;
+  cancelBid: boolean;
+  lang: Lang;
 }
 
-export { IInsertAndActivateProductRequest, IInsertAndActivateProductResponse, Format, ShippingPayment, ShippingFeePaymentType, ShippingWhere, CargoCompany };
+interface IUpdatePriceReturn extends IInsertAndActivateProductReturn {
+  itemId?: string;
+}
+
+interface IUpdatePriceResponse {
+  return: IUpdatePriceReturn;
+}
+
+//#endregion
+
+interface IUpdateStockRequest {
+  /**
+   * @description Auto filled
+   */
+  apiKey?: string;
+  /**
+   * @description Auto calced and filled
+   */
+  sign?: string;
+  /**
+   * @description Auto filled
+   */
+  time?: number;
+
+  productId: string;
+  itemId: string;
+  stock: number;
+  cancelBid: boolean;
+  lang: Lang;
+}
+
+interface IUpdateStockReturn extends IInsertAndActivateProductReturn {
+  itemId?: string;
+}
+
+interface IUpdateStockResponse {
+  return: IUpdateStockReturn;
+}
+
+//#endregion
+
+interface IUpdateStockAndActivateProductRequest {
+  /**
+   * @description Auto filled
+   */
+  apiKey?: string;
+  /**
+   * @description Auto calced and filled
+   */
+  sign?: string;
+  /**
+   * @description Auto filled
+   */
+  time?: number;
+
+  productId: string;
+  itemId: string;
+  stock: number;
+  lang: Lang;
+}
+
+interface IUpdateStockAndActivateProductReturn extends IInsertAndActivateProductReturn {
+  itemId?: string;
+}
+
+interface IUpdateStockAndActivateProductResponse {
+  return: IUpdateStockAndActivateProductReturn;
+}
+
+//#endregion
+
+interface IListItem {
+  item: string[];
+}
+
+interface IGetStockAndPriceRequest {
+  /**
+   * @description Auto filled
+   */
+  apiKey?: string;
+  /**
+   * @description Auto calced and filled
+   */
+  sign?: string;
+  /**
+   * @description Auto filled
+   */
+  time?: number;
+
+  itemIdList?: IListItem;
+  productIdList?: IListItem;
+  lang: Lang;
+}
+
+interface IGetStockAndPriceProduct {
+  productId?: string;
+  itemId?: string;
+  format: Format;
+  amount: number;
+  soldItemCount: number;
+  buyNowPrice: number;
+}
+
+interface IGetStockAndPriceProducts {
+  product: IGetStockAndPriceProduct[];
+}
+
+interface IGetStockAndPriceReturn {
+  ackCode: string;
+  responseTime: string;
+  timeElapsed?: string;
+  result?: string;
+  error?: IError;
+  products: IGetStockAndPriceProducts;
+}
+
+interface IGetStockAndPriceResponse {
+  return: IGetStockAndPriceReturn;
+}
+
+export {
+  IUpdateStockAndActivateProductResponse,
+  IUpdateStockAndActivateProductRequest,
+  IGetStockAndPriceResponse,
+  IGetStockAndPriceRequest,
+  IUpdateStockRequest,
+  IUpdateStockResponse,
+  IUpdatePriceRequest,
+  IUpdatePriceResponse,
+  IInsertAndActivateProductRequest,
+  IInsertAndActivateProductResponse,
+  Format,
+  ShippingPayment,
+  ShippingFeePaymentType,
+  ShippingWhere,
+  CargoCompany,
+};

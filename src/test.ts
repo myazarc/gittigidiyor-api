@@ -1,10 +1,18 @@
-import CategoryService from "./gittigiyor/Category/CategoryService";
-import CategoryV2Service from "./gittigiyor/Category/CategoryV2Service";
-import ProductService from "./gittigiyor/Product/ProductService";
-import { ICategoriesRequest } from "./gittigiyor/Category/ICategoryService";
-import { IRequiredCategorySpecsRequest } from "./gittigiyor/Category/ICategoryV2Service";
-import { Lang } from "./gittigiyor/_global/Utils";
-import { CargoCompany, Format, IInsertAndActivateProductRequest, ShippingPayment, ShippingWhere } from "./gittigiyor/Product/IProductService";
+import CategoryService from "./gittigidiyor/Category/CategoryService";
+import CategoryV2Service from "./gittigidiyor/Category/CategoryV2Service";
+import ProductService from "./gittigidiyor/Product/ProductService";
+import { ICategoriesRequest } from "./gittigidiyor/Category/ICategoryService";
+import { IRequiredCategorySpecsRequest } from "./gittigidiyor/Category/ICategoryV2Service";
+import { Lang } from "./gittigidiyor/_global/Utils";
+import {
+  CargoCompany,
+  Format,
+  IInsertAndActivateProductRequest,
+  IUpdateStockAndActivateProductRequest,
+  IUpdateStockRequest,
+  ShippingPayment,
+  ShippingWhere,
+} from "./gittigidiyor/Product/IProductService";
 
 const category = new CategoryService("mustafayazar1020", "kYx34SUVXceyrpXe2W59tppaM9FNMyFF");
 const categoryV2 = new CategoryV2Service("mustafayazar1020", "kYx34SUVXceyrpXe2W59tppaM9FNMyFF");
@@ -37,7 +45,8 @@ const product = new ProductService("mustafayazar1020", "kYx34SUVXceyrpXe2W59tppa
     const [res2] = await categoryV2.getRequiredCategorySpecs(data2);
     console.log(res2.return.requiredSpecs.spec);
 */
-    const data3 = {
+    /*
+    const data3: IInsertAndActivateProductRequest = {
       itemId: "PRODER1",
       product: {
         categoryCode: "bcd",
@@ -148,6 +157,18 @@ const product = new ProductService("mustafayazar1020", "kYx34SUVXceyrpXe2W59tppa
 
     const [res3] = await product.insertAndActivateProduct(data3);
     console.log(res3);
+    */
+
+    await product.connect();
+    const data4: IUpdateStockAndActivateProductRequest = {
+      productId: "782460084",
+      itemId: "PRODER1",
+      stock: 2,
+      lang: Lang.TR,
+    };
+
+    const [res4] = await product.updateStockAndActivateProduct(data4);
+    console.log(res4);
   } catch (error) {
     console.error(error);
   }
