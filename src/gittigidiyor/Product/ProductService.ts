@@ -17,7 +17,7 @@ import {
   IUpdateStockResponse,
 } from "./IProductService";
 
-export default class CategoryV2Service extends Service {
+export default class ProductService extends Service {
   public END_POINT = "https://dev.gittigidiyor.com:8443/listingapi/ws/IndividualProductService?wsdl";
 
   constructor(nick: string, password: string, public apiKey: string, public apiSecret: string) {
