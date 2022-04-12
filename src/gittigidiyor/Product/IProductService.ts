@@ -424,7 +424,39 @@ interface IFinishEarlyRequest {
   productIdList?: IListItem;
 }
 
+interface IRelistProductReturn {
+  ackCode: string;
+  responseTime: string;
+  timeElapsed?: string;
+  result?: string;
+  error?: IError;
+}
+
+interface IRelistProductResponse {
+  return: IRelistProductReturn;
+}
+
+interface IRelistProductRequest {
+  /**
+   * @description Auto filled
+   */
+  apiKey?: string;
+  /**
+   * @description Auto calced and filled
+   */
+  sign?: string;
+  /**
+   * @description Auto filled
+   */
+  time?: number;
+
+  itemIdList?: IListItem;
+  productIdList?: IListItem;
+}
+
 export {
+  IRelistProductRequest,
+  IRelistProductResponse,
   IGetProductsResponse,
   IGetProductsRequest,
   IUpdateStockAndActivateProductResponse,

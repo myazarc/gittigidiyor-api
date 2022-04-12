@@ -9,6 +9,8 @@ import {
   IGetStockAndPriceResponse,
   IInsertAndActivateProductRequest,
   IInsertAndActivateProductResponse,
+  IRelistProductRequest,
+  IRelistProductResponse,
   IUpdatePriceRequest,
   IUpdatePriceResponse,
   IUpdateStockAndActivateProductRequest,
@@ -87,5 +89,13 @@ export default class ProductService extends Service {
     payload.time = time;
     payload.sign = sign;
     return this._.finishEarlyAsync(payload);
+  }
+
+  public relistProducts(payload: IRelistProductRequest): Promise<[IRelistProductResponse, string | null, string | null, string | null, string | null | undefined]> {
+    payload.apiKey = this.apiKey;
+    const { time, sign } = this.getTimeWithSign();
+    payload.time = time;
+    payload.sign = sign;
+    return this._.relistProductsAsync(payload);
   }
 }
