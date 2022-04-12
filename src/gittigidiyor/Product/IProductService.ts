@@ -290,7 +290,7 @@ interface IUpdateStockAndActivateProductResponse {
 //#endregion
 
 interface IListItem {
-  item: string[];
+  item: string[] | number[];
 }
 
 interface IGetStockAndPriceRequest {
@@ -389,6 +389,41 @@ interface IGetProductsResponse {
   return: IGetProductsReturn;
 }
 
+interface IProductIdList {
+  productId: string[] | number[];
+}
+
+interface IFinishEarlyReturn {
+  ackCode: string;
+  responseTime: string;
+  timeElapsed?: string;
+  result?: string;
+  error?: IError;
+  productIdList: IProductIdList;
+}
+
+interface IFinishEarlyResponse {
+  return: IFinishEarlyReturn;
+}
+
+interface IFinishEarlyRequest {
+  /**
+   * @description Auto filled
+   */
+  apiKey?: string;
+  /**
+   * @description Auto calced and filled
+   */
+  sign?: string;
+  /**
+   * @description Auto filled
+   */
+  time?: number;
+
+  itemIdList?: IListItem;
+  productIdList?: IListItem;
+}
+
 export {
   IGetProductsResponse,
   IGetProductsRequest,
@@ -407,4 +442,6 @@ export {
   ShippingFeePaymentType,
   ShippingWhere,
   CargoCompany,
+  IFinishEarlyRequest,
+  IFinishEarlyResponse,
 };

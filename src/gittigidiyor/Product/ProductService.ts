@@ -1,6 +1,8 @@
 import Service from "../_global/Service";
 import { Md5 } from "ts-md5/dist/md5";
 import {
+  IFinishEarlyRequest,
+  IFinishEarlyResponse,
   IGetProductsRequest,
   IGetProductsResponse,
   IGetStockAndPriceRequest,
@@ -77,5 +79,13 @@ export default class CategoryV2Service extends Service {
     payload.time = time;
     payload.sign = sign;
     return this._.getProductsAsync(payload);
+  }
+
+  public finishEarly(payload: IFinishEarlyRequest): Promise<[IFinishEarlyResponse, string | null, string | null, string | null, string | null | undefined]> {
+    payload.apiKey = this.apiKey;
+    const { time, sign } = this.getTimeWithSign();
+    payload.time = time;
+    payload.sign = sign;
+    return this._.finishEarlyAsync(payload);
   }
 }
