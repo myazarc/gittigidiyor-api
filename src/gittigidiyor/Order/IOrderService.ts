@@ -28,15 +28,24 @@ enum OrderType {
   DESC = "D",
 }
 
+interface INeighborhoodType {
+  neighborhoodId: string | number;
+  neighborhoodName: string;
+  districtId: string | number;
+  active: boolean;
+}
+
 interface IBuyerInfo {
   username: string;
   name: string;
   surname: string;
   phone: string;
+  mobilePhone: string;
   address: string;
   district: string;
   city: string;
   zipCode: string | null;
+  neighborhoodType: INeighborhoodType;
 }
 
 interface IInvoiceInfo {
@@ -55,10 +64,12 @@ interface IInvoiceInfo {
 interface ISale {
   saleCode: string;
   status: string;
+  statusCode: string;
   productId: string | number;
   productTitle: string;
   price: number;
   cargoPayment: string;
+  cargoCode: string;
   amount: number;
   endDate: string;
   buyerInfo: IBuyerInfo;
@@ -67,6 +78,8 @@ interface ISale {
   lastActionDate: string;
   itemId: string;
   variantId: string;
+  moneyDate: string;
+  shippingInfo: IShippingInfo;
 }
 
 interface ISales {
@@ -90,9 +103,9 @@ enum ShippingPaymentType {
 }
 
 interface IShippingInfo {
-  deliveryOption: DeliveryOption;
+  deliveryOption?: DeliveryOption;
   shippingFirmName: string;
-  shippingFirmId: number;
+  shippingFirmId?: number;
   shippingPaymentType: ShippingPaymentType;
   cargoCode: string;
   shippingExpireDate: string;
@@ -108,7 +121,6 @@ interface IGetPagedSalesReturn {
   error?: IError;
   sales: ISales;
   nextPageAvailable: boolean;
-  shippingInfo: IShippingInfo;
 }
 
 interface IGetPagedSalesResponse {
@@ -175,4 +187,4 @@ interface IGetSaleRequest {
 }
 //#endregion
 
-export { IGetPagedSalesRequest, IGetPagedSalesResponse, IGetSaleRequest, IGetSaleResponse };
+export { IGetPagedSalesRequest, IGetPagedSalesResponse, IGetSaleRequest, IGetSaleResponse, ByStatus, OrderBy, OrderType };
