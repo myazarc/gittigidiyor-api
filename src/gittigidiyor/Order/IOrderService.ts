@@ -39,6 +39,19 @@ interface IBuyerInfo {
   zipCode: string | null;
 }
 
+interface IInvoiceInfo {
+  fullname: string;
+  phoneNumber: string;
+  address: string;
+  district: string;
+  cityCode: string;
+  zipCode: string | null;
+  companyTitle: string;
+  tcCertificate: string;
+  taxOffice: string;
+  taxNumber: string;
+}
+
 interface ISale {
   saleCode: string;
   status: string;
@@ -49,8 +62,11 @@ interface ISale {
   amount: number;
   endDate: string;
   buyerInfo: IBuyerInfo;
+  invoiceInfo?: IInvoiceInfo;
   thumbImageLink: string;
   lastActionDate: string;
+  itemId: string;
+  variantId: string;
 }
 
 interface ISales {
