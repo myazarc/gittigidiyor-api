@@ -124,4 +124,39 @@ interface IGetPagedSalesRequest {
 }
 //#endregion
 
-export { IGetPagedSalesRequest, IGetPagedSalesResponse };
+//#region getSale
+
+interface IGetSaleReturn {
+  ackCode: string;
+  responseTime: string;
+  timeElapsed?: string;
+  result?: string;
+  error?: IError;
+  sales: ISales;
+  shippingInfo: IShippingInfo;
+}
+
+interface IGetSaleResponse {
+  return: IGetSaleReturn;
+}
+
+interface IGetSaleRequest {
+  /**
+   * @description Auto filled
+   */
+  apiKey?: string;
+  /**
+   * @description Auto calced and filled
+   */
+  sign?: string;
+  /**
+   * @description Auto filled
+   */
+  time?: number;
+
+  saleCode: string | number;
+  lang: Lang;
+}
+//#endregion
+
+export { IGetPagedSalesRequest, IGetPagedSalesResponse, IGetSaleRequest, IGetSaleResponse };

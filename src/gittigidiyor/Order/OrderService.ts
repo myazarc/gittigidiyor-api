@@ -1,6 +1,6 @@
 import Service from "../_global/Service";
 import { Md5 } from "ts-md5/dist/md5";
-import { IGetPagedSalesRequest, IGetPagedSalesResponse } from "./IOrderService";
+import { IGetPagedSalesRequest, IGetPagedSalesResponse, IGetSaleRequest, IGetSaleResponse } from "./IOrderService";
 
 export default class OrderService extends Service {
   public END_POINT = "https://dev.gittigidiyor.com:8443/listingapi/ws/IndividualSaleService?wsdl";
@@ -22,5 +22,13 @@ export default class OrderService extends Service {
     payload.time = time;
     payload.sign = sign;
     return this._.getPagedSalesAsync(payload);
+  }
+
+  public getSale(payload: IGetSaleRequest): Promise<[IGetSaleResponse, string | null, string | null, string | null, string | null | undefined]> {
+    payload.apiKey = this.apiKey;
+    const { time, sign } = this.getTimeWithSign();
+    payload.time = time;
+    payload.sign = sign;
+    return this._.getSaleAsync(payload);
   }
 }
